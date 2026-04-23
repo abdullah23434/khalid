@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم شبكات الحاسب</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* الهيدر العلوي */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .student-info {
+            background-color: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-right: 5px solid var(--secondary-color);
+            padding-right: 15px;
+        }
+
+        /* قسم الاختبار */
+        .quiz-section {
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px dashed var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .question p {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>بوابة علوم الشبكات</h1>
+    <div class="student-info">
+        إعداد الطالب: خالد العياف | شعبة: 12
+    </div>
+</header>
+
+<div class="container">
+    <h2>مقدمة في الشبكات</h2>
+    <p>شبكة الحاسب هي مجموعة من الأجهزة المتصلة ببعضها البعض لمشاركة الموارد والبيانات. تساهم الشبكات في تسهيل التواصل وسرعة نقل المعلومات حول العالم.</p>
+
+    <hr>
+
+    <div class="quiz-section">
+        <h3>اختبر معلوماتك (صح أم خطأ)</h3>
+        
+        <form id="quizForm">
+            <div class="question">
+                <p>1. تعتبر شبكة الـ WAN أصغر من شبكة الـ LAN من حيث المساحة الجغرافية.</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="false"> صح</label>
+                    <label><input type="radio" name="q1" value="true"> خطأ</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. جهاز الـ Router (الموجه) يستخدم لربط شبكات مختلفة ببعضها البعض.</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="true"> صح</label>
+                    <label><input type="radio" name="q2" value="false"> خطأ</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. بروتوكول IP هو المسؤول عن إرسال المواقع الإلكترونية للمتصفح.</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="false"> صح</label>
+                    <label><input type="radio" name="q3" value="true"> خطأ</label>
+                </div>
+            </div>
+
+            <button type="button" onclick="checkQuiz()">تحقق من الإجابات</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+</div>
+
+<script>
+    function checkQuiz() {
+        let score = 0;
+        let totalQuestions = 3;
+        
+        // التحقق من الإجابات
+        let q1 = document.querySelector('input[name="q1"]:checked');
+        let q2 = document.querySelector('input[name="q2"]:checked');
+        let q3 = document.querySelector('input[name="q3"]:checked');
+
+        if(!q1 || !q2 || !q3) {
+            alert("يرجى الإجابة على جميع الأسئلة!");
+            return;
+        }
+
+        if(q1.value === "true") score++;
+        if(q2.value === "true") score++;
+        if(q3.value === "true") score++;
+
+        let resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = "درجتك هي: " + score + " من " + totalQuestions;
+        
+        if(score === totalQuestions) {
+            resultDiv.style.color = "green";
+            resultDiv.innerHTML += " - أحسنت يا خالد، إجاباتك مثالية!";
+        } else {
+            resultDiv.style.color = "red";
+            resultDiv.innerHTML += " - حاول مرة أخرى لتحسين نتيجتك.";
+        }
+    }
+</script>
+
+</body>
+</html>
