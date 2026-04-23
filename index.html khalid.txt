@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-  <title>موقعي</title>
-<body>
-  <h1>مرحبًا بك 👋</h1>
-</html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عالم شبكات الحاسب</title>
